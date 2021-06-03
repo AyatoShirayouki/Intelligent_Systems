@@ -1,0 +1,45 @@
+man(diego).
+man(nick).
+man(felipe).
+man(alan).
+man(bruno).
+man(gabriel).
+woman(mariana).
+woman(lucy).
+woman(vicky).
+woman(angela).
+woman(carla).
+family(gabriel, mariana).
+family(mariana, gabriel).
+family(lucy, felipe).
+family(felipe, lucy).
+family(angela, alan).
+family(alan, angela).
+son(felipe, gabriel).
+son(diego, felipe).
+son(nick, felipe).
+son(diego, lucy).
+son(nick, lucy).
+son(bruno, alan).
+son(bruno, angela).
+dauther(vicki, felipe).
+dauther(vicky, lucy).
+dauther(carla, alan).
+dauther(carla, angela).
+dauther(angela, gabriel).
+dauther(angela, mariana).
+
+parent(A,B):-son(B,A);dauther(B,A).
+father(A,B):-parent(A,B),man(A).
+mother(A,B):-parent(A,B),woman(A).
+grandfather(A,B):-parent(A,C),parent(C,B),man(A).
+grandmother(A,B):-parent(A,C),parent(C,B),woman(A).
+brother(A,B):-parent(C,A),parent(C,B),man(A).
+sister(A,B):-parent(C,A),parent(C,B),woman(A).
+aunt(A,B):-sister(A,C),parent(C,B).
+uncle(A,B):-brother(A,C),parent(C,B).
+aunt(A,B):-family(C,A),uncle(C,B).
+uncle(A,B):-family(C,A),aunt(C,B).
+cousin(A,B):-uncle(C,B),parent(C,A).
+dautherinlaw(A,B):-family(A,C),parent(B,C),woman(A).
+soninlaw(A,B):-family(A,C),parent(B,C),man(A).

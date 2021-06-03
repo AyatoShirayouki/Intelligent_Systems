@@ -1,0 +1,17 @@
+uiversity('НБУ','София').
+uiversity('НСА','София').
+uiversity('ПУ','Пловдив').
+uiversity('АУ','Пловдив').
+uiversity('МУ','Пловдив').
+uiversity('БСУ','Бургас').
+uiversity('СУ','София').
+uiversity('ТУ','София').
+student('Стоян Жеков','БСУ',21).
+student('Георги Борисов','ТУ',27).
+student('Петър Стоянов','МУ',30).
+student('Даниел Петров','НСА',20).
+student('Христо Петров','ПУ',37).
+
+?- uiversity(А,'София').
+?- student(А,Uversity,_),uiversity(Uversity,'Пловдив').
+?- student(Name,Uversity,Age),uiversity(Uversity,City),Age>30.

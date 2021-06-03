@@ -1,0 +1,46 @@
+str_kont('Egypt', 'Africa').
+
+str_kont('Russia','Europe').
+
+str_kont('Russia','Asia').
+
+str_kont('France','Europe').
+
+str_kont('Japan','Asia').
+
+str_kont('MagicLand','Europe').
+
+str_kont('Bulgaria','Europe').
+
+stolica_str('Talin','Estonia').
+
+stolica_str('Moscow','Russia').
+
+stolica_str('Paris','France').
+
+stolica_str('Tokyo','Japan').
+
+stolica_str('Abra Kadabra','MagicLand').
+gr_nasel('Sofia',1850000).
+gr_nasel('Tokyo',7500500).
+gr_nasel('Moscow',21000300).
+gr_nasel('Paris',6600500).
+gr_nasel('Berlin',9000888).
+gr_nasel('Plovdiv',550000).
+gr_nasel('Silistra',95000).
+gr_nasel('Karnobat',95000).
+gr_nasel('Abra Kadabra',33333333).
+
+bulgaria_Europe(X):- str_kont(X,'Europe'), X='Bulgaria'.
+bulgaria_continent(X):- str_kont('Bulgaria',X).
+countries_europe(X):- str_kont(X,'Europe').
+european_capitals(X):- str_kont(Y,'Europe'), stolica_str(X,Y).
+equal_people(X,Z):- gr_nasel(X,Y), gr_nasel(Z,T), Y=T, X\=Z.
+over_three_million(X):- gr_nasel(X,Y), Y>3000000.
+capital_over_sevenmil(X):- stolica_str(X,_), gr_nasel(X,Y), Y>7000000.
+continents_Capital_over_fourmil(X):- str_kont(Y,X), stolica_str(Z,Y), gr_nasel(Z,T), T>4000000.
+city_lower_than:- gr_nasel(X,N),gr_nasel(B,M),N<M,X\=B,
+ write(X), write(' is lower than '),write(B).
+city_not_capital:-gr_nasel(X,_),\+stolica_str(X,_),write(X).
+last:-gr_nasel(X,Y),\+((gr_nasel(Z,T),Y>T)),write(X),nl,fail.
+ 

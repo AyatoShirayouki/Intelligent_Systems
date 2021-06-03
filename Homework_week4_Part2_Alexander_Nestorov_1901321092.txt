@@ -1,0 +1,9 @@
+f(A,Res):-
+    A =< 1 , A == -1, !,
+    Res is log(abs(A+1)).
+f(A,Res):-
+    A > 1 , A == 5, !,
+    Res is (A**3 + 3/A).
+f(A,Res):-
+    (A =:= -1 ;  A =:= 5),!,
+    Res is A.

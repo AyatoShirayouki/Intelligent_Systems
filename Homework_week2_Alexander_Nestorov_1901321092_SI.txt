@@ -1,0 +1,18 @@
+work('Ivan Petrov', 'Treta Poliklinika', 23).
+work('Stoyan Draganov', 'Pulmed', 8).
+work('Mihaela Todorova', 'Purva Poliklinika', 14).
+heals('Mihaela Todorova', patient('Ivan Ivanov', 34)).
+heals('Stoyan Draganov', patient('Neli Tomova', 53)).
+heals('Ivan Petrov', patient('Hristo Angelov', 76)).
+heals('Ivan Petrov', patient('Kamen Dimov', 23)).
+
+overten(X):-work(X,_,Z), Z>9.
+?-overten(X).
+firstgoal(Z):-heals(X,patient(Z,Y)),Y=34,X='Mihaela Todorova'.
+?-firstgoal(X).
+firstpoliklinika(Z):-heals(_,patient(Z,_)),work(_,A,_),A\='Purva Poliklinika'.
+?-firstpoliklinika(Z).
+twopatients(X,Y):-heals(M,patient(X,_)),heals(N,patient(Y,_)),M=N,X\=Y.
+?-twopatients(X,Y).
+onedoctor(X):-heals(Z,patient(X,_)), \+ (heals(Y,patient(X,_)),Z\=Y).
+?-onedoctor(X).
